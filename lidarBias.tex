@@ -1,0 +1,92 @@
+\documentclass[10pt,letterpaper,oneside]{article}
+
+\input{./latexGoodPractices/preamble}
+
+%----------------------------------------
+% FILL THIS SECTION
+
+\newcommand{\projectTitle}{Lidar Measurement Biases in a Context of 3D Mapping}
+
+% Internship Project, Master's Project, Doctoral Project
+\newcommand{\projectLevel}{Master's Project}
+
+\newcommand{\projectSupervisor}{Prof. F. Pomerleau}
+\newcommand{\projectSupervisorEmail}{francois.pomerleau@ift.ulaval.ca}
+
+\author{Fran\c{c}ois Pomerleau \\
+       Laval University\\
+       1065, av. de la Médecine \\
+       Quebec, Qc \\
+       Canada G1V 0A6 \\
+       \texttt{<francois.pomerleau@ift.ulaval.ca>}
+%       \and
+%       Somebody Else \\
+%       Laval University\\
+%       1065, av. de la Médecine \\
+%       Quebec, Qc \\
+%       Canada G1V 0A6 \\
+%       \texttt{<Somebody.else@ulaval.ca>}
+}
+
+% Change to your specific file
+\addbibresource{./references.bib}
+
+% ---------------------------------------------------------------
+% Load style
+\input{researchOpportunityStyle.tex}
+% ---------------------------------------------------------------
+
+% Wrap text around a figure
+\usepackage{wrapfig}
+\setlength\intextsep{0pt}
+
+% Fill the template with text
+\usepackage{lipsum}
+
+\acrodef{ICP}{iterative closest point}
+
+%================================================================
+\begin{document}
+\makeCustomTitle
+
+% ---------------------------------------------------------------
+\section*{Project Proposal}
+
+\begin{wrapfigure}{R}{0.35\textwidth}
+\centering
+\includegraphics[width=0.35\textwidth]{./figs/overview.pdf}
+\caption{
+The Velodyne HDL-32E as a maximum range of \SI{100}{\m}, but at those distances distortions starts to appear, specially in long tunnels.
+}
+\label{fig:overview}
+%\vspace{-20pt}
+\end{wrapfigure}
+
+Prior work on noise identification \cite{Pomerleau2012} have identified uncertainty models for the Hokuyo URG- 04LX, UTM-30LX, and the Sick LMS-151.
+Those models are believed to be pessimistic because the uncertainty related to noise had to be augmented to cope for biases that were not modeled.
+One of the hypothesis is that large incidence angles (i.e., the angle between the laser beam and the surface normal vector) produce a constant bias.
+This problem is particularly visible when a robot is used to produce a map from a long hallway, tunnel, and even streets seen from faraway.
+Better sensor models would have impacts on autonomous mining and autonomous cars.
+
+The goal of this project is to investigate if those biases can be modeled and included in 3D mapping algorithm, such as \cite{Pomerleau2014}.
+The final implementation is expected to be implemented in C++ and integrated within \texttt{libpointmatcher} (\url{https://github.com/ethz-asl/libpointmatcher}), a modular library containing multiple algorithms used inside \ac{ICP} and currently used in multiple research projects around the world.
+Proof of concept will be demonstrated on existing data sets, starting with the ones collected for \cite{Pomerleau2012}.
+New data sets will be recorded using a Velodyne HDL-32e.
+Final experiments will be conducted with mobile robot and a Velodyne HDL-32e in underground tunnels connecting buildings on the campus of Laval University (see \autoref{fig:overview}).
+If the project goes well, an underground 3D map of the campus could be produced for the first time.
+
+% ---------------------------------------------------------------
+\section*{Research Environment}
+
+The project will be hosted by the Northern Robotics Laboratory (norlab) located on the main campus of Laval University.
+The university was established in \num{1663}, making it the oldest academic institution in Canada and the first school in North America to offer higher education in French.
+It currently enrolls \num{50000} students, from which around \num{9000} are at the postgraduate level.
+Norlab is specialized in mobile and autonomous systems working in winter or difficult conditions. 
+We aim at investigating new challenges related to navigation algorithms to push the boundary of what is currently possible to achieve with a mobile robot in real-life conditions. 
+The current focus of the laboratory is on localization algorithms designed for laser sensors (lidar) and 3D reconstruction of the environment.
+
+% ---------------------------------------------------------------
+\printbibliography
+
+
+\end{document}
